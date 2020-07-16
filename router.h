@@ -2,9 +2,26 @@
 #define ROUTER_H
 
 #include <vector>
-#include "route.h"
+// #include "route.h"
 
 using std::vector;
+
+struct Vertex{
+    int x;
+    int y;
+};
+
+
+class Route{
+    public:
+        Route();
+        Route(Vertex start, Vertex end);
+        ~Route() {waypoints.clear();}
+        Vertex start;
+        Vertex end;
+        vector<Vertex> waypoints;
+};
+
 
 struct Cell{
     int x;
@@ -13,8 +30,6 @@ struct Cell{
     int y_span;
 };
 
-
-void hello_world(vector<Cell> cells);
 
 class Router{
     public:
