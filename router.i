@@ -9,11 +9,11 @@
 %include "std_shared_ptr.i"
 
 %{
-#include "router.h"
+#include "router.hpp"
 %}
 
 %template(VertexVector) std::vector<Vertex>;
 %template(RouteVector) std::vector<Route>;
 %template(CellVector) std::vector<Cell>;
 
-%include "router.h"
+%include "router.hpp"
