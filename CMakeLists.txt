@@ -1,5 +1,22 @@
 cmake_minimum_required(VERSION 3.1)
 
+if("${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}" VERSION_GREATER 2.6)
+  if("${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}.${CMAKE_PATCH_VERSION}" VERSION_GREATER 2.8.3)
+    cmake_policy(VERSION 3.2)
+  else()
+    cmake_policy(VERSION 3.0)
+  endif()
+endif()
+
+set( CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS true )
+ 
+if ( COMMAND cmake_policy )
+
+  cmake_policy( SET CMP0003 NEW )  
+
+endif()
+
+
 project(aarf VERSION 1.0
                   DESCRIPTION "SWIG Cmake Router"
                   LANGUAGES CXX)
