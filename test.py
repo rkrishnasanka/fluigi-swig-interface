@@ -24,6 +24,7 @@ v2 = Vertex()
 v2.x = 999
 v2.y = 8989
 
+print(route.waypoints)
 route.waypoints.append(v1)
 
 
