@@ -14,12 +14,12 @@
 #include "placer.hpp"
 %}
 
-%template(PortVector) std::vector<Port>;
+%template(PortVector) std::vector<Terminal>;
 %template(PlacementCellVector) std::vector<PlacementCell>;
 %template(ConstraintVector) std::vector<Constraint>;
 %template(NetVector) std::vector<Net>;
 %template(OrientationMap) std::map<std::string, Orientation>;
 %template(SinksVector) std::vector<std::string>;
-%template(MirrorGroupsVector) std::vector<PlacementCellVector>;
+%template(MirrorGroupsVector) std::vector<std::vector<PlacementCell>>;
 
 %include "placer.hpp"

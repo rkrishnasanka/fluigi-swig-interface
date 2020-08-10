@@ -12,36 +12,37 @@ using std::map;
 
 enum class ConstraintType { 
     POSITION = 0, 
-    ROATATION = 1, 
+    ROTATION = 1, 
     ORIENTATION = 2, 
     LENGTH = 3, 
     ORTHOGONAL = 4, 
     ARRAY = 5, 
-    MIRROR = 6 
+    MIRROR = 6,
+    RADIAL = 7 
 };
 
 enum class Orientation{
     HORIZONTAL,
     VERTICAL
-}
+};
 
 class Terminal{
     public:
         Terminal();
         Terminal(string label, int x, int y);
-        ~Placment();
+        ~Terminal(){};
         //This is relative to the Placement Cell position
+        string label;
         int x;
         int y;
-        string label;
-}
+};
 
 class PlacementCell{
     public:
         PlacementCell();
-        PlacementCell(string id, int x, int y, int x_span, int y_span, int spacing, vector<Port> ports);
+        PlacementCell(string id, int x, int y, int x_span, int y_span, int spacing, vector<Terminal> ports);
         ~PlacementCell(){
-            ports.clear();
+            this->ports.clear();
         }
         string id;
         int x;
@@ -49,72 +50,84 @@ class PlacementCell{
         int x_span;
         int y_span;
         int component_spacing;
-        vector<Port> ports;
-}
+        vector<Terminal> ports;
+};
 
 class Net{
     public:
         Net();
-        Net(string source, vector<string> sinks);
+        Net(string id, string source, vector<string> sinks);
         ~Net(){
-            sinks.clear();
+            this->sinks.clear();
         }
+        string id;
         string source;
         vector<string> sinks;
-}
+};
 
 class Constraint{
     public:
         Constraint();
         ~Constraint(){
-            cells.clear();
+            this->cells.clear();
         }
         ConstraintType type;
         vector<PlacementCell> cells;
-}
+};
 
 class PositionConstraint : public Constraint{
     public:
         PositionConstraint(int x, int y);
-        ~PositionConstraint();
+        ~PositionConstraint(){};
         int xpos;
         int ypos;
-}
+};
 
-class RoationConstraint : public Constraint{
+class RotationConstraint : public Constraint{
     public:
-        RoationConstraint(int rotation);
-        ~RoationConstraint();
+        RotationConstraint(int rotation);
+        ~RotationConstraint(){};
         int rotation;
-}
+};
 
 class OrientationConstraint: public Constraint{
     public:
         OrientationConstraint(map<string, Orientation> orientations);
-        ~OrientationConstraint();
+        ~OrientationConstraint(){
+            this->orientations.clear();
+        };
         map<string, Orientation> orientations;
-}
+};
 
 class LengthConstraint: public Constraint{
     public:
-        LengthConstraint();
-        ~LengthConstraint();
+        LengthConstraint(Net net, string source_id, string sink_id, int length);
+        ~LengthConstraint(){};
+        Net net;
+        string source_id;
+        string sink_id;
         int length;
-}
+};
 
 class OrthogonalConstraint: public Constraint{
     public:
-        OrientationConstraint();
-        ~OrthogonalConstraint();
-}
+        OrthogonalConstraint(vector<PlacementCell> cells);
+        ~OrthogonalConstraint(){
+            cells.clear();
+        };
+        vector<PlacementCell> cells;
+};
 
 class ArrayConstraint: public Constraint{
     public:
-        ArrayConstraint(int xdim, int ydim);
-        ~ArrayConstraint();
+        ArrayConstraint(int xdim, int ydim, vector<PlacementCell> cells);
+        ~ArrayConstraint(){
+            cells.clear();
+        };
         int xdim;
         int ydim;
-}
+        vector<PlacementCell> cells;
+};
 
 class MirrorConstraint: public Constraint{
     public:
@@ -126,7 +139,7 @@ class MirrorConstraint: public Constraint{
             groups.clear();
         }
         vector<vector<PlacementCell>> groups;
-}
+};
 
 class RadialConstraint: public Constraint{
     public:
@@ -139,7 +152,7 @@ class RadialConstraint: public Constraint{
         }
         vector<vector<PlacementCell>> groups;
         PlacementCell center;
-}
+};
 
 class Placer{
     public:
@@ -150,10 +163,12 @@ class Placer{
             nets.clear();
         }
         vector<PlacementCell> cells;
-        vector<Constraint> constraints;
         vector<Net> nets;
+        vector<Constraint> constraints;
+
         void place();
 
-}
+};
 
 
+#endif
