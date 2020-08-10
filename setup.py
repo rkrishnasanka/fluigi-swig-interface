@@ -2,12 +2,12 @@
 
 from distutils.core import setup, Extension
 
-router_module = Extension('_aarf', sources = ['router_wrap.cxx', 'router.cpp'])
+router_module = Extension('_placer', sources = ['placer_wrap.cxx', 'placer.cpp'])
 
-setup( name = 'aarf',
+setup( name = 'placer',
         version = '0.1',
         author = 'krishna',
-        description = """AARF Wrapper""",
+        description = """Placer Wrapper""",
         ext_modules = [router_module],
-        py_modules = ["aarf"],
+        py_modules = ["placer"],
         )

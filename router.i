@@ -1,4 +1,4 @@
-%module aarf
+%module router
 
 %{
 #include <memory>
