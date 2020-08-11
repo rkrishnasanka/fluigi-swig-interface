@@ -17,7 +17,7 @@ if ( COMMAND cmake_policy )
 endif()
 
 
-project(aarf VERSION 1.0
+project(place_and_route VERSION 1.0
                   DESCRIPTION "SWIG Cmake Router"
                   LANGUAGES CXX)
 
@@ -29,9 +29,9 @@ include_directories(".")
 
 #Workgin compilation of the shared library
 
-add_library(router_corelib SHARED router.cpp router.hpp)
+add_library(place_and_route_corelib SHARED placer.cpp placer.hpp router.cpp router.hpp)
 
-target_compile_features(router_corelib PUBLIC cxx_std_11)
+target_compile_features(place_and_route_corelib PUBLIC cxx_std_11)
 
 #SWIG stuff:
 #load the cmake SWIG package
@@ -43,7 +43,7 @@ find_package(SWIG 4.0 REQUIRED)
 include(${SWIG_USE_FILE})
 
 #Set the swig language
-set_property(SOURCE router.i PROPERTY CPLUSPLUS ON)
+set_property(SOURCE place_and_route.i PROPERTY CPLUSPLUS ON)
 
 #load the package that SWIG uses to generate Python
 find_package(PythonLibs)
@@ -53,8 +53,8 @@ include_directories(${PYTHON_INCLUDE_DIRS} LANGUAGE python)
 
 #tell SWIG to create a new module, called aarf, 
 #in Python and point to the SWIG interface file (the .i file)
-swig_add_library(aarf LANGUAGE python SOURCES router.i)
+swig_add_library(place_and_route LANGUAGE python SOURCES place_and_route.i)
 
-swig_link_libraries(aarf router_corelib)
+swig_link_libraries(place_and_route place_and_route_corelib)
 
-swig_link_libraries(aarf ${PYTHON_INCLUDE_DIRS})
+swig_link_libraries(place_and_route ${PYTHON_INCLUDE_DIRS})
