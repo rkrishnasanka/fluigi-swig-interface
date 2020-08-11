@@ -29,9 +29,11 @@ include_directories(".")
 
 #Workgin compilation of the shared library
 
-add_library(place_and_route_corelib SHARED placer.cpp placer.hpp router.cpp router.hpp)
+add_library(place_and_route_corelib placer.cpp placer.hpp router.cpp router.hpp)
 
 target_compile_features(place_and_route_corelib PUBLIC cxx_std_11)
+
+target_compile_options(place_and_route_corelib PUBLIC "-fPIC")
 
 #SWIG stuff:
 #load the cmake SWIG package
