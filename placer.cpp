@@ -3,6 +3,7 @@
 #include "placer.hpp"
 
 using namespace std;
+using std::string;
 
 Terminal::Terminal() {}
 
