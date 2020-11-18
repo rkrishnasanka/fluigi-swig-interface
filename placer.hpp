@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 #include <map>
-// #include "router.hpp"
+#include "router.hpp"
 
 using std::map;
 using std::string;
@@ -66,10 +66,14 @@ public:
     ~Net()
     {
         this->sinks.clear();
+        this->routes.clear();
     }
     string id;
     string source;
+    int channelSpacing;
+    int channelWidth;
     vector<string> sinks;
+    vector<Route> routes;
 };
 
 class Constraint
@@ -183,14 +187,17 @@ public:
     Placer(vector<PlacementCell> cells, vector<Net> nets, vector<Constraint> constraints);
     ~Placer()
     {
-        cells.clear();
-        nets.clear();
+        this->cells.clear();
+        this->nets.clear();
+        this->constraints.clear();
     }
     vector<PlacementCell> cells;
     vector<Net> nets;
     vector<Constraint> constraints;
 
     void place();
+
+    void place_and_route();
 };
 
 #endif

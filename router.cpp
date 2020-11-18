@@ -21,7 +21,7 @@ Router::Router(vector<Cell> obstacles) : obstacles(obstacles)
     }
 }
 
-vector<Route> Router::route(vector<Route> routes)
+void Router::route(vector<Route> routes)
 {
     cout << "Do some routing here" << std::endl;
     cout << "Sources:" << endl;
@@ -35,8 +35,5 @@ vector<Route> Router::route(vector<Route> routes)
         cout << endl;
     }
 
-    vector<Route> ans;
-    ans.clear();
     cout << "Fill answer with a result here " << std::endl; //Determine the final wiring result, which is stored in "paths"
-    return ans;
 }

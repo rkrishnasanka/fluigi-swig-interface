@@ -19,7 +19,7 @@ class Route
 public:
     Route();
     Route(string id, Vertex start, Vertex end, int channelWidth, int channelSpacing);
-    ~Route() { waypoints.clear(); }
+    ~Route() { this->waypoints.clear(); }
     string id;
     Vertex start;
     Vertex end;
@@ -40,9 +40,12 @@ class Router
 {
 public:
     Router(vector<Cell> obstacles);
-    ~Router() { obstacles.clear(); }
+    ~Router()
+    {
+        this->obstacles.clear();
+    }
     vector<Cell> obstacles;
-    vector<Route> route(vector<Route> routes);
+    void route(vector<Route> routes);
 };
 
 #endif

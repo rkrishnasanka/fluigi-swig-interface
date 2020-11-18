@@ -123,3 +123,8 @@ void Placer::place()
 {
     cout << "Running place method" << endl;
 }
+
+void Placer::place_and_route()
+{
+    cout << "Running place and route method" << endl;
+}
