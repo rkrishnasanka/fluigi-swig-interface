@@ -18,7 +18,7 @@
 %template(PlacementCellVector) std::vector<PlacementCell>;
 %template(ConstraintVector) std::vector<Constraint>;
 %template(NetVector) std::vector<Net>;
-%template(OrientationMap) std::map<std::string, Orientation>;
+%template(OrientationMap) std::map<PlacementCell, Orientation>;
 %template(SinksVector) std::vector<std::string>;
 %template(MirrorGroupsVector) std::vector<std::vector<PlacementCell>>;
 

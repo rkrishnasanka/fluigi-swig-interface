@@ -36,7 +36,7 @@ RotationConstraint::RotationConstraint(int rotation, PlacementCell cell) : rotat
     this->type = ConstraintType::ROTATION;
 }
 
-OrientationConstraint::OrientationConstraint(map<string, Orientation> orientations) : orientations(orientations)
+OrientationConstraint::OrientationConstraint(map<PlacementCell, Orientation> orientations) : orientations(orientations)
 {
     this->type = ConstraintType::ORIENTATION;
 }

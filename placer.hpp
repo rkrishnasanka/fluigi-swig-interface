@@ -189,6 +189,11 @@ public:
      * 
      */
     bool lock_y = false;
+
+    bool operator<(const PlacementCell &ob) const
+    {
+        return this->id < ob.id || (this->id == ob.id);
+    }
 };
 
 /**
@@ -331,24 +336,68 @@ public:
     PlacementCell cell;
 };
 
+/**
+ * @brief Represents a rotation constriant (allows the user to specify exact 
+ * rotation angle) that for a single components
+ * 
+ */
 class RotationConstraint : public Constraint
 {
 public:
+    /**
+     * @brief Construct a new Rotation Constraint object
+     * 
+     * @param rotation 
+     * @param cell 
+     */
     RotationConstraint(int rotation, PlacementCell cell);
+
+    /**
+     * @brief Destroy the Rotation Constraint object
+     * 
+     */
     ~RotationConstraint(){};
+
+    /**
+     * @brief stores the exact rotation angle
+     * 
+     */
     int rotation;
+
+    /**
+     * @brief Stores the reference placement cell to which this 
+     * constraint applies to
+     * 
+     */
     PlacementCell cell;
 };
 
 class OrientationConstraint : public Constraint
 {
 public:
-    OrientationConstraint(map<string, Orientation> orientations);
+    /**
+     * @brief Construct a new Orientation Constraint object
+     * 
+     * @param orientations 
+     */
+    OrientationConstraint(map<PlacementCell, Orientation> orientations);
+
+    /**
+     * @brief Destroy the Orientation Constraint object
+     * 
+     */
     ~OrientationConstraint()
     {
         this->orientations.clear();
     };
-    map<string, Orientation> orientations;
+
+    /**
+     * @brief Map of all the orientations, where the 
+     * key is a reference to placement cell and the 
+     * stored value is the orientation (vertical | horizontal)
+     * 
+     */
+    map<PlacementCell, Orientation> orientations;
 };
 
 class LengthConstraint : public Constraint
