@@ -7,7 +7,13 @@ using std::string;
 
 Terminal::Terminal() {}
 
-Terminal::Terminal(string label, int x, int y) : label(label), x(x), y(y) {}
+Terminal::Terminal(string label, int rel_x, int rel_y) : label(label), rel_x(rel_x), rel_y(rel_y) {}
+
+void Terminal::compute_absolute_positions(int ref_x, int ref_y)
+{
+    this->x = ref_x + rel_x;
+    this->y = ref_y + rel_y;
+}
 
 PlacementCell::PlacementCell() {}
 
