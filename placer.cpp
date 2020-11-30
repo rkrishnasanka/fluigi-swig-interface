@@ -22,7 +22,7 @@ PlacementCell::PlacementCell(string id, int x, int y, int x_span, int y_span, in
 
 Net::Net() {}
 
-Net::Net(string id, string source, vector<string> sinks) : id(id), source(source), sinks(sinks) {}
+Net::Net(string id, Terminal source, vector<Terminal> sinks) : id(id), source(source), sinks(sinks) {}
 
 Constraint::Constraint() {}
 

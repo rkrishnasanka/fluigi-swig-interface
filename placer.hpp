@@ -212,7 +212,7 @@ public:
      * @param source 
      * @param sinks 
      */
-    Net(string id, string source, vector<string> sinks);
+    Net(string id, Terminal source, vector<Terminal> sinks);
 
     /**
      * @brief Destroy the Net object
@@ -316,13 +316,13 @@ public:
      * @brief x-coordinates
      * 
      */
-    int xpos = NULL;
+    int xpos = -1;
 
     /**
      * @brief y-coordinates
      * 
      */
-    int ypos = NULL;
+    int ypos = -1;
 
     /**
      * @brief Reference to the Placement cell object the constraint applies to
