@@ -56,6 +56,8 @@ public:
     int y_span;
     int component_spacing;
     vector<Terminal> ports;
+    bool lock_x = false;
+    bool lock_y = false;
 };
 
 class Net
