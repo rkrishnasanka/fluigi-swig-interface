@@ -236,10 +236,12 @@ public:
      * @brief Construct a new Net object
      * 
      * @param id 
-     * @param source 
-     * @param sinks 
+     * @param source_cell 
+     * @param source_terminal 
+     * @param sink_cells 
+     * @param sink_terminals 
      */
-    Net(string id, Terminal source, vector<Terminal> sinks);
+    Net(string id, PlacementCell source_cell, Terminal source_terminal, vector<PlacementCell> sink_cells, vector<Terminal> sink_terminals);
 
     /**
      * @brief Destroy the Net object
@@ -249,6 +251,7 @@ public:
     {
         this->sinks.clear();
         this->routes.clear();
+        this->sink_terminals.clear();
     }
 
     /**
@@ -258,10 +261,16 @@ public:
     string id;
 
     /**
+     * @brief Stores the source placment cell
+     * 
+     */
+    PlacementCell source;
+
+    /**
      * @brief Stores the referene of the terminal where the net starts
      * 
      */
-    Terminal source;
+    Terminal source_terminal;
 
     /**
      * @brief Stores the spacing around the channel where no
@@ -277,11 +286,17 @@ public:
     int channelWidth;
 
     /**
+     * @brief Stores the references of the sink placementcells
+     * 
+     */
+    vector<PlacementCell> sinks;
+
+    /**
      * @brief Stores the references of the terminal where the net
      * ends
      * 
      */
-    vector<Terminal> sinks;
+    vector<Terminal> sink_terminals;
 
     /**
      * @brief Stores the final routing results as the route objects

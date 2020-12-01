@@ -36,9 +36,11 @@ Terminal PlacementCell::get_terminal(string label)
 
 Net::Net() {}
 
-Net::Net(string id, Terminal source, vector<Terminal> sinks) : id(id), source(source), sinks(sinks) {}
+Net::Net(string id, PlacementCell source_cell, Terminal source_terminal, vector<PlacementCell> sink_cells, vector<Terminal> sink_terminals) : id(id), source(source_cell), source_terminal(source_terminal), sinks(sink_cells), sink_terminals(sink_terminals) {}
 
-Constraint::Constraint() {}
+Constraint::Constraint()
+{
+}
 
 PositionConstraint::PositionConstraint(int x, int y, PlacementCell cell) : xpos(x), ypos(y), cell(cell)
 {
