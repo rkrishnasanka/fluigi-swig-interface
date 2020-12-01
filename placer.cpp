@@ -9,8 +9,6 @@ Terminal::Terminal() {}
 
 Terminal::Terminal(string label, int rel_x, int rel_y) : label(label), rel_x(rel_x), rel_y(rel_y) {}
 
-Terminal::Terminal(string parent_id, string label, int rel_x, int rel_y) : parent_id(parent_id), label(label), rel_x(rel_x), rel_y(rel_y) {}
-
 void Terminal::compute_absolute_positions(int ref_x, int ref_y)
 {
     this->x = ref_x + rel_x;
@@ -36,7 +34,7 @@ Terminal PlacementCell::get_terminal(string label)
 
 Net::Net() {}
 
-Net::Net(string id, PlacementCell source_cell, Terminal source_terminal, vector<PlacementCell> sink_cells, vector<Terminal> sink_terminals) : id(id), source(source_cell), source_terminal(source_terminal), sinks(sink_cells), sink_terminals(sink_terminals) {}
+Net::Net(string id, PlacementCell *source_cell, Terminal *source_terminal, vector<PlacementCell *> sink_cells, vector<Terminal *> sink_terminals) : id(id), source(source_cell), source_terminal(source_terminal), sinks(sink_cells), sink_terminals(sink_terminals) {}
 
 Constraint::Constraint()
 {

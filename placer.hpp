@@ -61,26 +61,10 @@ public:
     Terminal(string label, int rel_x, int rel_y);
 
     /**
-     * @brief Construct a new Terminal object
-     * 
-     * @param parent_id 
-     * @param label 
-     * @param rel_x 
-     * @param rel_y 
-     */
-    Terminal(string parent_id, string label, int rel_x, int rel_y);
-
-    /**
      * @brief Destroy the Terminal object
      * 
      */
     ~Terminal(){};
-
-    /**
-     * @brief Unique ID of the parent object
-     * 
-     */
-    string parent_id;
 
     /**
      * @brief Identifier used to for the terminal within the cell
@@ -241,7 +225,7 @@ public:
      * @param sink_cells 
      * @param sink_terminals 
      */
-    Net(string id, PlacementCell source_cell, Terminal source_terminal, vector<PlacementCell> sink_cells, vector<Terminal> sink_terminals);
+    Net(string id, PlacementCell *source_cell, Terminal *source_terminal, vector<PlacementCell *> sink_cells, vector<Terminal *> sink_terminals);
 
     /**
      * @brief Destroy the Net object
@@ -264,13 +248,13 @@ public:
      * @brief Stores the source placment cell
      * 
      */
-    PlacementCell source;
+    PlacementCell *source;
 
     /**
      * @brief Stores the referene of the terminal where the net starts
      * 
      */
-    Terminal source_terminal;
+    Terminal *source_terminal;
 
     /**
      * @brief Stores the spacing around the channel where no
@@ -289,14 +273,14 @@ public:
      * @brief Stores the references of the sink placementcells
      * 
      */
-    vector<PlacementCell> sinks;
+    vector<PlacementCell *> sinks;
 
     /**
      * @brief Stores the references of the terminal where the net
      * ends
      * 
      */
-    vector<Terminal> sink_terminals;
+    vector<Terminal *> sink_terminals;
 
     /**
      * @brief Stores the final routing results as the route objects

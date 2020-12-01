@@ -16,6 +16,8 @@
 
 %template(PortVector) std::vector<Terminal>;
 %template(PlacementCellVector) std::vector<PlacementCell>;
+%template(PortPointerVector) std::vector<Terminal*>;
+%template(PlacementCellPointerVector) std::vector<PlacementCell*>;
 %template(ConstraintVector) std::vector<Constraint>;
 %template(NetVector) std::vector<Net>;
 %template(OrientationMap) std::map<PlacementCell, Orientation>;
