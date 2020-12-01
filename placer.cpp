@@ -9,6 +9,8 @@ Terminal::Terminal() {}
 
 Terminal::Terminal(string label, int rel_x, int rel_y) : label(label), rel_x(rel_x), rel_y(rel_y) {}
 
+Terminal::Terminal(string parent_id, string label, int rel_x, int rel_y) : parent_id(parent_id), label(label), rel_x(rel_x), rel_y(rel_y) {}
+
 void Terminal::compute_absolute_positions(int ref_x, int ref_y)
 {
     this->x = ref_x + rel_x;
@@ -19,6 +21,18 @@ PlacementCell::PlacementCell() {}
 
 PlacementCell::PlacementCell(string id, int x, int y, int x_span, int y_span, int spacing, vector<Terminal> ports)
     : id(id), x(x), y(y), x_span(x_span), y_span(y_span), component_spacing(spacing), ports(ports) {}
+
+Terminal PlacementCell::get_terminal(string label)
+{
+    for (size_t i = 0; i < this->ports.size(); i++)
+    {
+        Terminal t = this->ports[i];
+        if (label == t.label)
+            return t;
+
+        throw "Could not find the terminal";
+    }
+}
 
 Net::Net() {}
 

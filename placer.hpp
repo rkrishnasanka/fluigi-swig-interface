@@ -61,11 +61,31 @@ public:
     Terminal(string label, int rel_x, int rel_y);
 
     /**
+     * @brief Construct a new Terminal object
+     * 
+     * @param parent_id 
+     * @param label 
+     * @param rel_x 
+     * @param rel_y 
+     */
+    Terminal(string parent_id, string label, int rel_x, int rel_y);
+
+    /**
      * @brief Destroy the Terminal object
      * 
      */
     ~Terminal(){};
-    //This is relative to the Placement Cell position
+
+    /**
+     * @brief Unique ID of the parent object
+     * 
+     */
+    string parent_id;
+
+    /**
+     * @brief Identifier used to for the terminal within the cell
+     * 
+     */
     string label;
 
     /**
@@ -194,6 +214,8 @@ public:
     {
         return this->id < ob.id || (this->id == ob.id);
     }
+
+    Terminal get_terminal(string label);
 };
 
 /**
