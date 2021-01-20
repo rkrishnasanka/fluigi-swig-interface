@@ -17,20 +17,8 @@ void Terminal::compute_absolute_positions(int ref_x, int ref_y)
 
 PlacementCell::PlacementCell() {}
 
-PlacementCell::PlacementCell(string id, int x, int y, int x_span, int y_span, int spacing, vector<Terminal *> ports)
+PlacementCell::PlacementCell(string id, int x, int y, int x_span, int y_span, int spacing, vector<Terminal> ports)
     : id(id), x(x), y(y), x_span(x_span), y_span(y_span), component_spacing(spacing), ports(ports) {}
-
-Terminal *PlacementCell::get_terminal(string label)
-{
-    for (size_t i = 0; i < this->ports.size(); i++)
-    {
-        Terminal *t = this->ports[i];
-        if (label == t->label)
-            return t;
-
-        throw "Could not find the terminal";
-    }
-}
 
 Net::Net() {}
 
@@ -93,8 +81,8 @@ Placer::Placer(vector<PlacementCell> cells, vector<Net> nets, vector<Constraint>
         cout << c_check.id << endl;
         for (size_t j = 0; j < c_check.ports.size(); j++)
         {
-            Terminal *t_check = c_check.ports[j];
-            cout << "Terminal - " << t_check->label << "| Rel Position (" << t_check->x << ", " << t_check->y << ")" << endl;
+            Terminal t_check = c_check.ports[j];
+            cout << "Terminal - " << t_check.label << "| Rel Position (" << t_check.x << ", " << t_check.y << ")" << endl;
         }
     }
 

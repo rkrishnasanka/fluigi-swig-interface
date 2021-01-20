@@ -46,6 +46,7 @@ include(${SWIG_USE_FILE})
 
 #Set the swig language
 set_property(SOURCE place_and_route.i PROPERTY CPLUSPLUS ON)
+set_property(TARGET place_and_route_corelib PROPERTY SWIG_COMPILE_OPTIONS -doxygen)
 
 #load the package that SWIG uses to generate Python
 find_package(PythonLibs)

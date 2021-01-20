@@ -126,7 +126,7 @@ public:
      * @param spacing 
      * @param ports 
      */
-    PlacementCell(string id, int x, int y, int x_span, int y_span, int spacing, vector<Terminal *> ports);
+    PlacementCell(string id, int x, int y, int x_span, int y_span, int spacing, vector<Terminal> ports);
 
     /**
      * @brief Destroy the Placement Cell object
@@ -156,6 +156,12 @@ public:
     int y;
 
     /**
+     * @brief rotation of the placement cell
+     * 
+     */
+    int rotation;
+
+    /**
      * @brief Width of the placement cell
      * 
      */
@@ -178,7 +184,7 @@ public:
      * associated with the placement cell
      * 
      */
-    vector<Terminal *> ports;
+    vector<Terminal> ports;
 
     /**
      * @brief Tells the placer to not move the placement cell
@@ -194,12 +200,17 @@ public:
      */
     bool lock_y = false;
 
+    /**
+     * @brief Tells the placer to not rotate the placement
+     * cell
+     * 
+     */
+    bool lock_rotation = false;
+
     bool operator<(const PlacementCell &ob) const
     {
         return this->id < ob.id || (this->id == ob.id);
     }
-
-    Terminal *get_terminal(string label);
 };
 
 /**
