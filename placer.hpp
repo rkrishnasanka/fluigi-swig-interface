@@ -513,7 +513,7 @@ public:
     vector<Net> nets;
     vector<Constraint> constraints;
 
-    void place();
+    void place(int max_x, int max_y);
 
     void place_and_route();
 };

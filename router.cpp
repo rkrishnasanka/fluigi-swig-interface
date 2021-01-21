@@ -21,7 +21,7 @@ Router::Router(vector<Cell> obstacles) : obstacles(obstacles)
     }
 }
 
-void Router::route(vector<Route> routes)
+void Router::route(vector<Route> routes, int min_x, int min_y, int max_x, int max_y)
 {
     cout << "Do some routing here" << std::endl;
     cout << "Sources:" << endl;

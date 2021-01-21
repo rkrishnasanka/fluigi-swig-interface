@@ -132,7 +132,7 @@ public:
      * 
      * @param routes 
      */
-    void route(vector<Route> routes);
+    void route(vector<Route> routes, int min_x, int min_y, int max_x, int max_y);
 };
 
 #endif

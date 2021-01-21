@@ -127,7 +127,7 @@ Placer::Placer(vector<PlacementCell> cells, vector<Net> nets, vector<Constraint>
     }
 }
 
-void Placer::place()
+void Placer::place(int max_x, int max_y)
 {
     cout << "Running place method" << endl;
 }
