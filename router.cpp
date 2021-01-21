@@ -1,6 +1,7 @@
 #include "router.hpp"
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -36,4 +37,15 @@ void Router::route(vector<Route> routes, int min_x, int min_y, int max_x, int ma
     }
 
     cout << "Fill answer with a result here " << std::endl; //Determine the final wiring result, which is stored in "paths"
+}
+
+vector<Vertex> Route::getWaypoints()
+{
+    vector<Vertex> ret;
+    for (size_t i = 0; i < this->waypoints.size(); i++)
+    {
+        ret.push_back(this->waypoints[i]);
+    }
+
+    return ret;
 }

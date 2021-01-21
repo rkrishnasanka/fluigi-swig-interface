@@ -50,40 +50,48 @@ public:
     ~Route() { this->waypoints.clear(); }
 
     /**
-     * @brief 
+     * @brief Stores the id of the route so that we can map it back to the 
+     * original connection
      * 
      */
     string id;
 
     /**
-     * @brief 
+     * @brief Stores the start point coordinate
      * 
      */
     Vertex start;
 
     /**
-     * @brief 
+     * @brief Stores the end point Coordinate
      * 
      */
     Vertex end;
 
     /**
-     * @brief 
+     * @brief Stores the size of the channel
      * 
      */
     int channelWidth;
 
     /**
-     * @brief 
+     * @brief Stores the channel spacing value
      * 
      */
     int channelSpacing;
 
     /**
-     * @brief 
+     * @brief Stores the waypoints of the route
      * 
      */
     vector<Vertex> waypoints;
+
+    /**
+     * @brief Returns the set of the vertex waypoints
+     * 
+     * @return vector<Vertex> 
+     */
+    vector<Vertex> getWaypoints();
 };
 
 /**
