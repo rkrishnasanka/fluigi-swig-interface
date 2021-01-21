@@ -18,6 +18,7 @@
 
 %template(VertexVector) std::vector<Vertex>;
 %template(RouteVector) std::vector<Route>;
+%template(RoutePointerVector) std::vector<Route*>;
 %template(CellVector) std::vector<Cell>;
 
 %include "router.hpp"

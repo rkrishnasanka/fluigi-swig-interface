@@ -297,7 +297,7 @@ public:
      * @brief Stores the final routing results as the route objects
      * 
      */
-    vector<Route> routes;
+    vector<Route *> routes;
 };
 
 /**

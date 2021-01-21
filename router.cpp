@@ -22,17 +22,17 @@ Router::Router(vector<Cell> obstacles) : obstacles(obstacles)
     }
 }
 
-void Router::route(vector<Route> routes, int min_x, int min_y, int max_x, int max_y)
+void Router::route(vector<Route *> routes, int min_x, int min_y, int max_x, int max_y)
 {
     cout << "Do some routing here" << std::endl;
     cout << "Sources:" << endl;
     for (size_t i = 0; i < routes.size(); i++)
     {
-        cout << "Route - " << routes[i].id << endl;
-        cout << "(" << routes[i].start.x << ", " << routes[i].start.y << ")" << endl;
-        cout << "(" << routes[i].end.x << ", " << routes[i].end.y << ")" << endl;
-        cout << "Channel Width -" << routes[i].channelWidth << endl;
-        cout << "Channel Spacing -" << routes[i].channelSpacing << endl;
+        cout << "Route - " << routes[i]->id << endl;
+        cout << "(" << routes[i]->start.x << ", " << routes[i]->start.y << ")" << endl;
+        cout << "(" << routes[i]->end.x << ", " << routes[i]->end.y << ")" << endl;
+        cout << "Channel Width -" << routes[i]->channelWidth << endl;
+        cout << "Channel Spacing -" << routes[i]->channelSpacing << endl;
         cout << endl;
     }
 
