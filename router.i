@@ -1,6 +1,10 @@
 %module router
 
 %{
+#define SWIG_PYTHON_EXTRA_NATIVE_CONTAINERS 
+%}
+
+%{
 #include <memory>
 %}
 
