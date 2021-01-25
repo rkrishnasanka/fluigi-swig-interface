@@ -20,11 +20,14 @@
 
 %template(PortVector) std::vector<Terminal>;
 %template(PlacementCellVector) std::vector<PlacementCell>;
-%template(PortPointerVector) std::vector<Terminal*>;
-%template(PlacementCellPointerVector) std::vector<PlacementCell*>;
+%template(PortPointerVector) std::vector<Terminal *>;
+%template(PlacementCellPointerVector) std::vector<PlacementCell *>;
+%template(NetPointerVector) std::vector<Net *>;
+%template(ConstraintPointerVector) std::vector<Constraint *>;
+%template(PlacementCellGroups) std::vector<vector<PlacementCell*>>;
 %template(ConstraintVector) std::vector<Constraint>;
 %template(NetVector) std::vector<Net>;
-%template(OrientationMap) std::map<PlacementCell, Orientation>;
+%template(OrientationMap) std::map<PlacementCell*, Orientation>;
 %template(SinksVector) std::vector<std::string>;
 %template(MirrorGroupsVector) std::vector<std::vector<PlacementCell>>;
 

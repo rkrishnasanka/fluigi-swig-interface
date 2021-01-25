@@ -341,7 +341,7 @@ public:
      * @param y 
      * @param cell 
      */
-    PositionConstraint(int x, int y, PlacementCell cell);
+    PositionConstraint(int x, int y, PlacementCell *cell);
 
     /**
      * @brief Destroy the Position Constraint object
@@ -365,7 +365,7 @@ public:
      * @brief Reference to the Placement cell object the constraint applies to
      * 
      */
-    PlacementCell cell;
+    PlacementCell *cell;
 };
 
 /**
@@ -382,7 +382,7 @@ public:
      * @param rotation 
      * @param cell 
      */
-    RotationConstraint(int rotation, PlacementCell cell);
+    RotationConstraint(int rotation, PlacementCell *cell);
 
     /**
      * @brief Destroy the Rotation Constraint object
@@ -401,7 +401,7 @@ public:
      * constraint applies to
      * 
      */
-    PlacementCell cell;
+    PlacementCell *cell;
 };
 
 class OrientationConstraint : public Constraint
@@ -412,7 +412,7 @@ public:
      * 
      * @param orientations 
      */
-    OrientationConstraint(map<PlacementCell, Orientation> orientations);
+    OrientationConstraint(map<PlacementCell *, Orientation> orientations);
 
     /**
      * @brief Destroy the Orientation Constraint object
@@ -429,7 +429,7 @@ public:
      * stored value is the orientation (vertical | horizontal)
      * 
      */
-    map<PlacementCell, Orientation> orientations;
+    map<PlacementCell *, Orientation> orientations;
 };
 
 class LengthConstraint : public Constraint
@@ -446,31 +446,31 @@ public:
 class OrthogonalConstraint : public Constraint
 {
 public:
-    OrthogonalConstraint(vector<PlacementCell> cells);
+    OrthogonalConstraint(vector<PlacementCell *> cells);
     ~OrthogonalConstraint()
     {
         cells.clear();
     };
-    vector<PlacementCell> cells;
+    vector<PlacementCell *> cells;
 };
 
 class ArrayConstraint : public Constraint
 {
 public:
-    ArrayConstraint(int xdim, int ydim, vector<PlacementCell> cells);
+    ArrayConstraint(int xdim, int ydim, vector<PlacementCell *> cells);
     ~ArrayConstraint()
     {
         cells.clear();
     };
     int xdim;
     int ydim;
-    vector<PlacementCell> cells;
+    vector<PlacementCell *> cells;
 };
 
 class MirrorConstraint : public Constraint
 {
 public:
-    MirrorConstraint(vector<vector<PlacementCell>> groups);
+    MirrorConstraint(vector<vector<PlacementCell *>> groups);
     ~MirrorConstraint()
     {
         for (std::size_t i = 0; i < groups.size(); i++)
@@ -479,13 +479,13 @@ public:
         }
         groups.clear();
     }
-    vector<vector<PlacementCell>> groups;
+    vector<vector<PlacementCell *>> groups;
 };
 
 class RadialConstraint : public Constraint
 {
 public:
-    RadialConstraint(vector<vector<PlacementCell>> groups, PlacementCell center);
+    RadialConstraint(vector<vector<PlacementCell *>> groups, PlacementCell *center);
     ~RadialConstraint()
     {
         for (std::size_t i = 0; i < groups.size(); i++)
@@ -494,24 +494,24 @@ public:
         }
         groups.clear();
     }
-    vector<vector<PlacementCell>> groups;
-    PlacementCell center;
+    vector<vector<PlacementCell *>> groups;
+    PlacementCell *center;
 };
 
 class Placer
 {
 public:
     Placer();
-    Placer(vector<PlacementCell> cells, vector<Net> nets, vector<Constraint> constraints);
+    Placer(vector<PlacementCell *> cells, vector<Net *> nets, vector<Constraint *> constraints);
     ~Placer()
     {
         this->cells.clear();
         this->nets.clear();
         this->constraints.clear();
     }
-    vector<PlacementCell> cells;
-    vector<Net> nets;
-    vector<Constraint> constraints;
+    vector<PlacementCell *> cells;
+    vector<Net *> nets;
+    vector<Constraint *> constraints;
 
     void place(int max_x, int max_y);
 

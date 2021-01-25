@@ -28,17 +28,17 @@ Constraint::Constraint()
 {
 }
 
-PositionConstraint::PositionConstraint(int x, int y, PlacementCell cell) : xpos(x), ypos(y), cell(cell)
+PositionConstraint::PositionConstraint(int x, int y, PlacementCell *cell) : xpos(x), ypos(y), cell(cell)
 {
     this->type = ConstraintType::POSITION;
 }
 
-RotationConstraint::RotationConstraint(int rotation, PlacementCell cell) : rotation(rotation), cell(cell)
+RotationConstraint::RotationConstraint(int rotation, PlacementCell *cell) : rotation(rotation), cell(cell)
 {
     this->type = ConstraintType::ROTATION;
 }
 
-OrientationConstraint::OrientationConstraint(map<PlacementCell, Orientation> orientations) : orientations(orientations)
+OrientationConstraint::OrientationConstraint(map<PlacementCell *, Orientation> orientations) : orientations(orientations)
 {
     this->type = ConstraintType::ORIENTATION;
 }
@@ -48,54 +48,54 @@ LengthConstraint::LengthConstraint(Net net, string source_id, string sink_id, in
     this->type = ConstraintType::LENGTH;
 }
 
-OrthogonalConstraint::OrthogonalConstraint(vector<PlacementCell> cells) : cells(cells)
+OrthogonalConstraint::OrthogonalConstraint(vector<PlacementCell *> cells) : cells(cells)
 {
     this->type = ConstraintType::ORTHOGONAL;
 }
 
-ArrayConstraint::ArrayConstraint(int xdim, int ydim, vector<PlacementCell> cells) : xdim(xdim), ydim(ydim), cells(cells)
+ArrayConstraint::ArrayConstraint(int xdim, int ydim, vector<PlacementCell *> cells) : xdim(xdim), ydim(ydim), cells(cells)
 {
     this->type = ConstraintType::ARRAY;
 }
 
-MirrorConstraint::MirrorConstraint(vector<vector<PlacementCell>> groups) : groups(groups)
+MirrorConstraint::MirrorConstraint(vector<vector<PlacementCell *>> groups) : groups(groups)
 {
     this->type = ConstraintType::MIRROR;
 }
 
-RadialConstraint::RadialConstraint(vector<vector<PlacementCell>> groups, PlacementCell center) : groups(groups), center(center)
+RadialConstraint::RadialConstraint(vector<vector<PlacementCell *>> groups, PlacementCell *center) : groups(groups), center(center)
 {
     this->type = ConstraintType::RADIAL;
 }
 
 Placer::Placer(){};
 
-Placer::Placer(vector<PlacementCell> cells, vector<Net> nets, vector<Constraint> constraints) : cells(cells), nets(nets), constraints(constraints)
+Placer::Placer(vector<PlacementCell *> cells, vector<Net *> nets, vector<Constraint *> constraints) : cells(cells), nets(nets), constraints(constraints)
 {
 
     cout << "Firing Constructor for Placer" << endl;
 
     for (size_t i = 0; i < cells.size(); i++)
     {
-        PlacementCell c_check = cells[i];
-        cout << c_check.id << endl;
-        for (size_t j = 0; j < c_check.ports.size(); j++)
+        PlacementCell *c_check = cells[i];
+        cout << c_check->id << endl;
+        for (size_t j = 0; j < c_check->ports.size(); j++)
         {
-            Terminal t_check = c_check.ports[j];
+            Terminal t_check = c_check->ports[j];
             cout << "Terminal - " << t_check.label << "| Rel Position (" << t_check.x << ", " << t_check.y << ")" << endl;
         }
     }
 
     for (size_t i = 0; i < nets.size(); i++)
     {
-        cout << nets[i].id << endl;
+        cout << nets[i]->id << endl;
     }
 
     for (size_t i = 0; i < constraints.size(); i++)
     {
         cout << i;
-        Constraint c_check = constraints[i];
-        switch (c_check.type)
+        Constraint *c_check = constraints[i];
+        switch (c_check->type)
         {
         case ConstraintType::ROTATION:
             cout << " - Rotoation Constraint" << endl;
