@@ -97,6 +97,12 @@ public:
     int rel_y;
 
     /**
+     * @brief Tells the terminal is connected to a certain terminal
+     * 
+     */
+    bool con_to_cer;
+
+    /**
      * @brief Computes the relative positions
      * 
      * @param x 
@@ -126,7 +132,7 @@ public:
      * @param spacing 
      * @param ports 
      */
-    PlacementCell(string id, int x, int y, int x_span, int y_span, int spacing, vector<Terminal> ports);
+    PlacementCell(string id, int x, int y, int x_span, int y_span, int spacing, vector<Terminal *> ports);
 
     /**
      * @brief Destroy the Placement Cell object
@@ -184,7 +190,7 @@ public:
      * associated with the placement cell
      * 
      */
-    vector<Terminal> ports;
+    vector<Terminal *> ports;
 
     /**
      * @brief Tells the placer to not move the placement cell
