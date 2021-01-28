@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "placer.hpp"
-
+#include "plannarPlacement.h"
 using namespace std;
 using std::string;
 
@@ -78,17 +78,18 @@ Placer::Placer(vector<PlacementCell *> cells, vector<Net *> nets, vector<Constra
     for (size_t i = 0; i < cells.size(); i++)
     {
         PlacementCell *c_check = cells[i];
-        cout << c_check->id << endl;
+        cout  << "PlacementCell - " << c_check->id << endl;
         for (size_t j = 0; j < c_check->ports.size(); j++)
         {
             Terminal t_check = c_check->ports[j];
+            t_check.compute_absolute_positions(t_check.rel_x, t_check.rel_x);
             cout << "Terminal - " << t_check.label << "| Rel Position (" << t_check.x << ", " << t_check.y << ")" << endl;
         }
     }
 
     for (size_t i = 0; i < nets.size(); i++)
     {
-        cout << nets[i]->id << endl;
+        cout << "Net - " << nets[i]->id << endl;
     }
 
     for (size_t i = 0; i < constraints.size(); i++)
@@ -129,7 +130,16 @@ Placer::Placer(vector<PlacementCell *> cells, vector<Net *> nets, vector<Constra
 
 void Placer::place(int max_x, int max_y)
 {
-    cout << "Running place method" << endl;
+    cout<<"---------------Initial Placement Work-----------------"<<endl;
+    plannarPlacement placementer;
+    placementer.setUp(cells,nets,constraints);
+    placementer.work();
+    for (size_t i = 0; i < cells.size(); i++)
+    {
+        PlacementCell* c_check = cells[i];
+        cout  << "PlacementCell - " << c_check->id << "| Rel Position (" << c_check->x << ", " << c_check->y << ")" << endl;
+    }
+    cout<<"---------------Placement end.-----------------"<<endl;
 }
 
 void Placer::place_and_route()
